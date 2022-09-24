@@ -11,17 +11,45 @@ const Gameboard = (() => {
             tttCaseDisplay.classList.add('tttCaseDisplay');
             tttCaseDisplay.innerText = 'N';
             gameboardContainer.appendChild(tttCaseDisplay);
+
+
+            tttCaseDisplay.addEventListener('click', () => {
+                if (gameflow.currentPlayer === player1) {
+                    tttCaseDisplay.innerText = 'X';
+                    gameflow.currentPlayer = player2;
+                } else {
+                    tttCaseDisplay.innerText = 'O';
+                    gameflow.currentPlayer = player1;
+                };
+            });
+
         };
         container.appendChild(gameboardContainer);
     }
 
     return {
-        createGameboard
+        createGameboard,
     };
 })();
 
-const Player = () => {
+const Player = (playerNumber) => {
 
+    return {
+        playerNumber
+    }
 };
+
+const player1 = Player('1');
+const player2 = Player('2');
+
+const gameflow = (() => {
+
+    let currentPlayer = player1;
+
+    return {
+        currentPlayer
+    }
+
+})();
 
 Gameboard.createGameboard();
