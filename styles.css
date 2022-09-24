@@ -1,0 +1,21 @@
+#mainTitle {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.gameboardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    height: 200px;
+    align-items: center;
+}
+
+.tttCaseDisplay {
+    width: 33%;
+    text-align: center;
+}
