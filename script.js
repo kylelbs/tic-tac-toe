@@ -25,5 +25,3 @@ const Player = () => {
 };
 
 Gameboard.createGameboard();
-
-
