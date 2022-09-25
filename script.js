@@ -1,10 +1,10 @@
-//next time: detecter si on peut cocher la case ou pas, puis changer l'array selon la case coché, puis detecter si win ou nul.
-//attention quand tu change gameflow.currentplayer, tu ne change pas la variable currentplayer dans l'objet gameflow, tu change la variable retourné de l'objet
+//next time: ask if there is a less "barbaric" way to test each victory case with each move played
 
 const Gameboard = (() => {
 
+    let gameboardDisplay = ['N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N'];
+
     const createGameboard = function () {
-        let gameboardDisplay = ['N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N'];
         let container = document.querySelector('.container');
         let gameboardContainer = document.createElement('div');
         gameboardContainer.classList.add('gameboardContainer');
@@ -24,11 +24,25 @@ const Gameboard = (() => {
                 } else if (gameflow.currentPlayer === player1) {
                     tttCaseDisplay.innerText = 'X';
                     gameflow.currentPlayer = player2;
-                    console.log(index);
+                    gameboardDisplay[index] = 'X';
+                    console.log(gameboardDisplay);
+
+                    if (gameflow.verifyNull()) {
+                        alert('heynull');
+                    }
+
+                    if (gameflow.verifyWin()) {
+                        alert('heywin');
+                    }
                 } else {
                     tttCaseDisplay.innerText = 'O';
                     gameflow.currentPlayer = player1;
-                    console.log(index);
+                    gameboardDisplay[index] = 'O';
+                    console.log(gameboardDisplay);
+
+                    if (gameflow.verifyNull()) {
+                        alert('heynull');
+                    }
                 };
 
             });
@@ -39,6 +53,7 @@ const Gameboard = (() => {
 
     return {
         createGameboard,
+        gameboardDisplay,
     };
 })();
 
@@ -56,8 +71,30 @@ const gameflow = (() => {
 
     let currentPlayer = player1;
 
+    const verifyNull = () => {
+
+        //add null case here
+
+        // const counts = {};
+        // for (const tttCase of Gameboard.gameboardDisplay) {
+        //     counts[tttCase] = counts[tttCase] ? counts[tttCase] + 1 : 1;
+        // }
+        // if (counts['N'] === 2) {
+        //     return true;
+        // }
+    }
+
+    const verifyWin = () => {
+        if (Gameboard.gameboardDisplay[0] === 'X' && Gameboard.gameboardDisplay[1] === 'X' && Gameboard.gameboardDisplay[2] === 'X') {
+            return true;
+        }
+        //complete the rest of win cases
+    }
+
     return {
-        currentPlayer
+        currentPlayer,
+        verifyNull,
+        verifyWin
     }
 
 })();
