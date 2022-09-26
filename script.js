@@ -1,5 +1,3 @@
-//next time: ask if there is a less "barbaric" way to test each victory case with each move played
-
 const Gameboard = (() => {
 
     let gameboardDisplay = ['N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N'];
