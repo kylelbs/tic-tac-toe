@@ -98,7 +98,6 @@ const gameflow = (() => {
             (Gameboard.gameboardDisplay[2] === 'O' && Gameboard.gameboardDisplay[6] === 'O' && Gameboard.gameboardDisplay[4] === 'O')) {
             return true;
         }
-        //complete the rest of win cases
     }
 
     return {
