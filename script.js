@@ -4,8 +4,13 @@ const Gameboard = (() => {
 
     const createGameboard = function () {
         let container = document.querySelector('.container');
+
         let gameboardContainer = document.createElement('div');
         gameboardContainer.classList.add('gameboardContainer');
+
+        let playerDisplay = document.createElement('div');
+        playerDisplay.classList.add('playerDisplay');
+        playerDisplay.innerText = 'Player 1, your turn to play !';
 
         for (const [index, tttCase] of gameboardDisplay.entries()) {
             // console.log(index);
@@ -28,6 +33,8 @@ const Gameboard = (() => {
                     if (gameflow.verifyWin()) {
                         alert('heywin');
                     }
+
+                    playerDisplay.innerText = 'Player 2, your turn to play !';
                 } else {
                     tttCaseDisplay.innerText = 'O';
                     gameflow.currentPlayer = player1;
@@ -37,15 +44,18 @@ const Gameboard = (() => {
                     if (gameflow.verifyWin()) {
                         alert('heywin');
                     }
+
+                    playerDisplay.innerText = 'Player 1, your turn to play !';
                 };
 
-                if (gameflow.verifyNull()) {
+                if (gameflow.verifyNull() && !gameflow.verifyWin()) {
                     alert('null')
                 };
             });
 
         };
         container.appendChild(gameboardContainer);
+        container.appendChild(playerDisplay);
     }
 
     return {
