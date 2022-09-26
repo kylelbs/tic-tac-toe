@@ -27,10 +27,6 @@ const Gameboard = (() => {
                     gameboardDisplay[index] = 'X';
                     console.log(gameboardDisplay);
 
-                    if (gameflow.verifyNull()) {
-                        alert('heynull');
-                    }
-
                     if (gameflow.verifyWin()) {
                         alert('heywin');
                     }
@@ -40,11 +36,14 @@ const Gameboard = (() => {
                     gameboardDisplay[index] = 'O';
                     console.log(gameboardDisplay);
 
-                    if (gameflow.verifyNull()) {
-                        alert('heynull');
+                    if (gameflow.verifyWin()) {
+                        alert('heywin');
                     }
                 };
 
+                if (gameflow.verifyNull()) {
+                    alert('null')
+                };
             });
 
         };
@@ -73,19 +72,32 @@ const gameflow = (() => {
 
     const verifyNull = () => {
 
-        //add null case here
-
-        // const counts = {};
-        // for (const tttCase of Gameboard.gameboardDisplay) {
-        //     counts[tttCase] = counts[tttCase] ? counts[tttCase] + 1 : 1;
-        // }
-        // if (counts['N'] === 2) {
-        //     return true;
-        // }
+        const counts = {};
+        for (const tttCase of Gameboard.gameboardDisplay) {
+            counts[tttCase] = counts[tttCase] ? counts[tttCase] + 1 : 1;
+        }
+        if (counts['N'] == undefined) {
+            return true;
+        }
     }
 
     const verifyWin = () => {
-        if (Gameboard.gameboardDisplay[0] === 'X' && Gameboard.gameboardDisplay[1] === 'X' && Gameboard.gameboardDisplay[2] === 'X') {
+        if ((Gameboard.gameboardDisplay[0] === 'X' && Gameboard.gameboardDisplay[1] === 'X' && Gameboard.gameboardDisplay[2] === 'X') ||
+            (Gameboard.gameboardDisplay[3] === 'X' && Gameboard.gameboardDisplay[4] === 'X' && Gameboard.gameboardDisplay[5] === 'X') ||
+            (Gameboard.gameboardDisplay[6] === 'X' && Gameboard.gameboardDisplay[7] === 'X' && Gameboard.gameboardDisplay[8] === 'X') ||
+            (Gameboard.gameboardDisplay[0] === 'X' && Gameboard.gameboardDisplay[3] === 'X' && Gameboard.gameboardDisplay[6] === 'X') ||
+            (Gameboard.gameboardDisplay[1] === 'X' && Gameboard.gameboardDisplay[4] === 'X' && Gameboard.gameboardDisplay[7] === 'X') ||
+            (Gameboard.gameboardDisplay[2] === 'X' && Gameboard.gameboardDisplay[5] === 'X' && Gameboard.gameboardDisplay[8] === 'X') ||
+            (Gameboard.gameboardDisplay[0] === 'X' && Gameboard.gameboardDisplay[4] === 'X' && Gameboard.gameboardDisplay[8] === 'X') ||
+            (Gameboard.gameboardDisplay[2] === 'X' && Gameboard.gameboardDisplay[6] === 'X' && Gameboard.gameboardDisplay[4] === 'X') ||
+            (Gameboard.gameboardDisplay[0] === 'O' && Gameboard.gameboardDisplay[1] === 'O' && Gameboard.gameboardDisplay[2] === 'O') ||
+            (Gameboard.gameboardDisplay[3] === 'O' && Gameboard.gameboardDisplay[4] === 'O' && Gameboard.gameboardDisplay[5] === 'O') ||
+            (Gameboard.gameboardDisplay[6] === 'O' && Gameboard.gameboardDisplay[7] === 'O' && Gameboard.gameboardDisplay[8] === 'O') ||
+            (Gameboard.gameboardDisplay[0] === 'O' && Gameboard.gameboardDisplay[3] === 'O' && Gameboard.gameboardDisplay[6] === 'O') ||
+            (Gameboard.gameboardDisplay[1] === 'O' && Gameboard.gameboardDisplay[4] === 'O' && Gameboard.gameboardDisplay[7] === 'O') ||
+            (Gameboard.gameboardDisplay[2] === 'O' && Gameboard.gameboardDisplay[5] === 'O' && Gameboard.gameboardDisplay[8] === 'O') ||
+            (Gameboard.gameboardDisplay[0] === 'O' && Gameboard.gameboardDisplay[4] === 'O' && Gameboard.gameboardDisplay[8] === 'O') ||
+            (Gameboard.gameboardDisplay[2] === 'O' && Gameboard.gameboardDisplay[6] === 'O' && Gameboard.gameboardDisplay[4] === 'O')) {
             return true;
         }
         //complete the rest of win cases
